@@ -1,0 +1,76 @@
+.grid-template-area{
+    grid-template-areas: 
+    "ac ac divide multiple"
+    "seven eight nine minus"
+    "four five six plus"
+    "one two three equal"
+    "zero zero point equal";
+}
+
+
+.zero{
+    grid-area: zero;
+}
+.one{
+    grid-area: one;
+}
+
+.two{
+    grid-area: two;
+}
+
+.three{
+    grid-area: three;
+}
+
+.four{
+    grid-area: four;
+}
+
+.five{
+    grid-area: five;
+}
+
+.six{
+    grid-area: six;
+}
+
+.seven{
+    grid-area: seven;
+}
+
+.eight{
+    grid-area: eight;
+}
+
+.nine{
+    grid-area: nine;
+}
+
+.plus{
+    grid-area: plus;
+}
+
+.minus{
+    grid-area: minus
+}
+
+.multiply{
+    grid-area: multiple;
+}
+
+.divide{
+    grid-area: divide;
+}
+
+.equal{
+    grid-area: equal;
+}
+
+.ac{
+    grid-area: ac;
+}
+
+.point{
+    grid-area: point;
+}
