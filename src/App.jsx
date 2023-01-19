@@ -3,48 +3,67 @@ import "./App.css";
 
 function App() {
 	const [formula, setFormula] = useState("");
-	const [output, setOutput] = useState("0");
-	const [lastDigit, setLastDigit] = useState("");
+	const [outputScreen, setOutputScreen] = useState("0");
+	const [lastDigit, setLastDigit] = useState("0");
 	const [calculation, setCalculation] = useState("");
 	const [answer, setAnswer] = useState("");
 
+	const numbers = ["0","1","2","3","4","5","6","7","8","9"]
 	const operators = ["/","*","-","+"];
 	// console.log(formula)
-	// console.log(output)
+	// console.log(outputScreen)
 	
 	// on click functions
 	const clearScreen = () => {
-		setOutput("0")
+		setOutputScreen("0")
 		setFormula("")
+		setLastDigit("0")
 	}
 
 	const number = (event) => {
 		const value = event.target.innerHTML
-		setOutput(value)
-		setFormula(formula + value)
-		setLastDigit(value)
+		if(numbers.includes(lastDigit) || operators.includes(lastDigit)){
+			setOutputScreen(value)
+			setFormula(formula + value)
+			setLastDigit(value)
+		}else if(lastDigit == "."){
+			console.log(lastDigit)
+			console.log("shouln't come")
+			setOutputScreen(outputScreen + value)
+			setFormula(formula + value)
+		}
 	}
 
 	const operator = (event) => {
 		const value = event.target.innerHTML
-		// console.log((formula - output))
-		
-		if(!operators.includes(lastDigit)){
+		setOutputScreen(value)
+		// console.log((formula - outputScreen))
+
+		if(numbers.includes(lastDigit)){
 			console.log("in if")
-			setOutput(value)
 			setFormula(formula + value)
-			setCalculation(formula + value)
+			setLastDigit(value)
+			// setCalculation(formula + value)
+		}
+		else if(operators.includes(lastDigit) || "."){
+			console.log("in else")
+			setFormula((formula.slice(0,-1)) + value)
 			setLastDigit(value)
 		}
-		else{
-			console.log("in else")
-			setOutput(value)
-			setFormula((formula.slice(0,-1)) + value)
-		}
+		
 	}
 
 	const point = (event) => {
-
+		if(numbers.includes(lastDigit)){
+			setOutputScreen(outputScreen + ".")
+			setFormula(formula + ".")
+		}
+		else if(operators.includes(lastDigit)){
+			setOutputScreen("0.")
+			setFormula(formula + "0.")
+		}
+		
+		setLastDigit(".")
 	}
 
 	const equal = (event) => {
@@ -57,7 +76,7 @@ function App() {
 				<div className="bg-gray-900">
 					<div className="flex flex-col">
 						<div className="text-end pt-1 pb-1 pr-2 pl-2 text-lg min-h-[50px]">{formula}</div>
-						<div className="text-end pt-1 pb-1 pr-2 pl-2 text-2xl">{output}</div>
+						<div className="text-end pt-1 pb-1 pr-2 pl-2 text-2xl">{outputScreen}</div>
 					</div>
 					<div className="grid grid-rows-[auto] grid-template-area gap-1 p-2 bg-gray-900">
 						<button className="text-center pl-8 pr-8 pt-4 pb-4 bg-red-600 ac" onClick={clearScreen}>AC</button>
