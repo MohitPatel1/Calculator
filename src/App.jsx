@@ -15,7 +15,7 @@ function App() {
 		setFormula("")
 		setLastDigit("0")
 	}
-// 9.9/
+
 	const number = (event) => {
 		const value = event.target.innerHTML
 		if(formula != "0"){
@@ -45,14 +45,11 @@ function App() {
 				setFormula((formula.slice(0,-1)) + value)
 				setLastDigit(value)
 			}
-			else if(lastDigit == (".") && (numbers.includes(outputScreen.charAt(value.length-1)))){
-				console.log("aya")
+			else if(lastDigit == "." && numbers.includes(outputScreen.charAt(value.length-1))){
 				setFormula(formula + value)
 				setLastDigit(outputScreen.charAt(value.length-1))
 			}
 			else if(lastDigit == "."){
-				console.log("yaha kyu aya")
-				console.log(value)
 				setFormula((formula.slice(0,-1)) + value)
 				setLastDigit(value)
 			}
@@ -68,12 +65,11 @@ function App() {
 			setOutputScreen("0.")
 			setFormula(formula + "0.")
 		}
-		
 		setLastDigit(".")
 	}
 
 	const equal = () => {
-		const answer = eval(formula)
+		const answer = eval(formula).toFixed(4)
 		setFormula(formula + " = " + answer)
 		setOutputScreen(answer)
 	}
