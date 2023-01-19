@@ -5,55 +5,61 @@ function App() {
 	const [formula, setFormula] = useState("");
 	const [outputScreen, setOutputScreen] = useState("0");
 	const [lastDigit, setLastDigit] = useState("0");
-	const [calculation, setCalculation] = useState("");
-	const [answer, setAnswer] = useState("");
 
 	const numbers = ["0","1","2","3","4","5","6","7","8","9"]
 	const operators = ["/","*","-","+"];
-	// console.log(formula)
-	// console.log(outputScreen)
-	
+
 	// on click functions
 	const clearScreen = () => {
 		setOutputScreen("0")
 		setFormula("")
 		setLastDigit("0")
 	}
-
+// 9.9/
 	const number = (event) => {
 		const value = event.target.innerHTML
-		if(numbers.includes(lastDigit) || operators.includes(lastDigit)){
-			setOutputScreen(value)
-			setFormula(formula + value)
-			setLastDigit(value)
-		}else if(lastDigit == "."){
-			console.log(lastDigit)
-			console.log("shouln't come")
-			setOutputScreen(outputScreen + value)
-			setFormula(formula + value)
+		if(formula != "0"){
+			if(numbers.includes(lastDigit) || operators.includes(lastDigit)){
+				setOutputScreen(value)
+				setFormula(formula + value)
+				setLastDigit(value)
+			}else if(lastDigit == "."){
+				setOutputScreen(outputScreen + value)
+				setFormula(formula + value)
+			}
 		}
 	}
 
 	const operator = (event) => {
 		const value = event.target.innerHTML
-		setOutputScreen(value)
-		// console.log((formula - outputScreen))
-
-		if(numbers.includes(lastDigit)){
-			console.log("in if")
-			setFormula(formula + value)
-			setLastDigit(value)
-			// setCalculation(formula + value)
+		if(formula != ""){
+			setOutputScreen(value)
+			console.log(numbers.includes(outputScreen.charAt(value.length-1)))
+			console.log(outputScreen)
+			console.log(lastDigit == (".") && (numbers.includes(outputScreen.charAt(value.length-1))))
+			if(numbers.includes(lastDigit)){
+				setFormula(formula + value)
+				setLastDigit(value)
+			}
+			else if(operators.includes(lastDigit)){
+				setFormula((formula.slice(0,-1)) + value)
+				setLastDigit(value)
+			}
+			else if(lastDigit == (".") && (numbers.includes(outputScreen.charAt(value.length-1)))){
+				console.log("aya")
+				setFormula(formula + value)
+				setLastDigit(outputScreen.charAt(value.length-1))
+			}
+			else if(lastDigit == "."){
+				console.log("yaha kyu aya")
+				console.log(value)
+				setFormula((formula.slice(0,-1)) + value)
+				setLastDigit(value)
+			}
 		}
-		else if(operators.includes(lastDigit) || "."){
-			console.log("in else")
-			setFormula((formula.slice(0,-1)) + value)
-			setLastDigit(value)
-		}
-		
 	}
 
-	const point = (event) => {
+	const point = () => {
 		if(numbers.includes(lastDigit)){
 			setOutputScreen(outputScreen + ".")
 			setFormula(formula + ".")
@@ -66,8 +72,10 @@ function App() {
 		setLastDigit(".")
 	}
 
-	const equal = (event) => {
-
+	const equal = () => {
+		const answer = eval(formula)
+		setFormula(formula + " = " + answer)
+		setOutputScreen(answer)
 	}
 
 	return (
