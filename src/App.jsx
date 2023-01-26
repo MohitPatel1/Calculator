@@ -5,6 +5,7 @@ function App() {
 	const [formula, setFormula] = useState("");
 	const [outputScreen, setOutputScreen] = useState("0");
 	const [lastDigit, setLastDigit] = useState("0");
+	const [answer, setAnswer] = useState(0)
 
 	const numbers = ["0","1","2","3","4","5","6","7","8","9"]
 	const operators = ["/","*","-","+"];
@@ -25,6 +26,7 @@ function App() {
 				}else{
 					setOutputScreen(value)
 				}
+				console.log(formula + " formula at number")
 				setFormula(formula + value)
 				setLastDigit(value)
 			}else if(lastDigit == "."){
@@ -41,18 +43,38 @@ function App() {
 
 	const operator = (event) => {
 		const value = event.target.innerHTML
+		console.log(lastDigit)
 		if(formula != ""){
 			setOutputScreen(value)
-			console.log(numbers.includes(outputScreen.charAt(value.length-1)))
-			console.log(outputScreen)
-			console.log(lastDigit == (".") && (numbers.includes(outputScreen.charAt(value.length-1))))
-			if(numbers.includes(lastDigit)){
-				setFormula(formula + value)
+			if(lastDigit == '='){
+				console.log(answer + "answer in operator, last digit =") 
+				const prevAnswer = eval(answer);
+				console.log(prevAnswer+" prev answer")
+				setOutputScreen(value)
+				setFormula(prevAnswer + value)
 				setLastDigit(value)
 			}
-			else if(operators.includes(lastDigit)){
-				setFormula((formula.slice(0,-1)) + value)
+			else if(numbers.includes(lastDigit)){
+				setFormula(formula + value)
 				setLastDigit(value)
+				console.log(value +" current value in operator, last digit number")
+			}
+			else if(operators.includes(lastDigit)){
+				if(value == '-'){
+					setFormula(formula + value)
+					setLastDigit(value)
+				}
+				else{
+					if(lastDigit == '-'){
+						setFormula((formula.slice(0,-2)) + value)
+						setLastDigit(value)
+					}
+					else{
+						setFormula((formula.slice(0,-1)) + value)
+						setLastDigit(value)
+						console.log(value + "last digit set to plus")
+						}
+				}
 			}
 			else if(lastDigit == "." && numbers.includes(outputScreen.charAt(value.length-1))){
 				setFormula(formula + value)
@@ -82,6 +104,7 @@ function App() {
 		setFormula(formula + " = " + answer)
 		setOutputScreen(Number(answer))
 		setLastDigit("=")
+		setAnswer(answer)
 	}
 
 	return (
