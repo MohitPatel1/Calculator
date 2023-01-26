@@ -26,7 +26,6 @@ function App() {
 				}else{
 					setOutputScreen(value)
 				}
-				console.log(formula + " formula at number")
 				setFormula(formula + value)
 				setLastDigit(value)
 			}else if(lastDigit == "."){
@@ -43,13 +42,10 @@ function App() {
 
 	const operator = (event) => {
 		const value = event.target.innerHTML
-		console.log(lastDigit)
 		if(formula != ""){
 			setOutputScreen(value)
 			if(lastDigit == '='){
-				console.log(answer + "answer in operator, last digit =") 
 				const prevAnswer = eval(answer);
-				console.log(prevAnswer+" prev answer")
 				setOutputScreen(value)
 				setFormula(prevAnswer + value)
 				setLastDigit(value)
@@ -57,7 +53,6 @@ function App() {
 			else if(numbers.includes(lastDigit)){
 				setFormula(formula + value)
 				setLastDigit(value)
-				console.log(value +" current value in operator, last digit number")
 			}
 			else if(operators.includes(lastDigit)){
 				if(value == '-'){
@@ -72,7 +67,6 @@ function App() {
 					else{
 						setFormula((formula.slice(0,-1)) + value)
 						setLastDigit(value)
-						console.log(value + "last digit set to plus")
 						}
 				}
 			}
@@ -100,7 +94,11 @@ function App() {
 	}
 
 	const equal = () => {
-		const answer = eval(formula).toFixed(2)
+		let answer = eval(formula)
+		if(!Number.isInteger(answer)) {
+			answer = eval(formula).toFixed(4)
+		}
+
 		setFormula(formula + " = " + answer)
 		setOutputScreen(Number(answer))
 		setLastDigit("=")
