@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>    
     <meta charset="UTF-8" />
     <link rel="icon" type="image" href="/calculator.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mohit's calculator</title>
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "76e82076-dd38-4313-a8f2-c828f8a71a73",
+    });
+  });
+</script>
   </head>
   <body>
     <div id="root"></div>
