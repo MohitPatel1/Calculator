@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "789103875929",
+    "project_id": "fastify-boilerplate-91e64",
+    "storage_bucket": "fastify-boilerplate-91e64.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789103875929:android:dbb98f503ceb0327455e48",
+        "android_client_info": {
+          "package_name": "calculator.mohitpatel.life"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789103875929-4jkq4g0g1locjd2g64omts8iumcqo5qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ6AdEfrQtNy91B_9xpHGSyufygugQWrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789103875929-4jkq4g0g1locjd2g64omts8iumcqo5qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
