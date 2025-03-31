@@ -6,14 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mohit's calculator</title>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "76e82076-dd38-4313-a8f2-c828f8a71a73",
-    });
-  });
-</script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "76e82076-dd38-4313-a8f2-c828f8a71a73",
+          allowLocalhostAsSecureOrigin: true,
+          autoRegisterForPushNotifications: true,
+          promptOptions: {
+            slidedown: {
+              
+            }
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
