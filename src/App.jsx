@@ -106,7 +106,7 @@ function App() {
 	}
 
 	return (
-		<div className="h-screen bg-blue-300">
+		<div className="h-screen bg-red-300">
 			<div className="flex flex-col w-full h-full justify-center items-center gap-1 text-slate-100">
 				<div className="bg-gray-900">
 					<div className="flex flex-col">
