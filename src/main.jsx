@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import './index.css'
 
-// Example OneSignal initialization in your React app
-import OneSignal from 'react-native-onesignal';
+// If you are using react-onesignal, import it like this
+import OneSignal from 'react-onesignal';
 
 // During app initialization (typically in App.js)
 OneSignal.setAppId('76e82076-dd38-4313-a8f2-c828f8a71a73');
