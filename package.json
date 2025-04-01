@@ -12,8 +12,6 @@
     "@capacitor/cli": "^6.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native": "^0.78.1",
-    "react-native-onesignal": "^5.2.9",
     "react-onesignal": "^3.2.2"
   },
   "devDependencies": {
